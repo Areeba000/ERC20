@@ -92,10 +92,6 @@ contract ERC20 is IERC20{
         ERC20DATA storage s = getERC20Storage();
         return s.allowance[_spender][_owner];
     } 
-      function gettotalSupply() external view returns (uint256){
-        ERC20DATA storage s = getERC20Storage();
-        return s.totalSupply;
-    }
     function getbalanceOf(address _owner) external view returns (uint256){
         ERC20DATA storage s = getERC20Storage();
         return  s.balanceOf[_owner];
