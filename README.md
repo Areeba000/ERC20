@@ -1,72 +1,64 @@
-# ERC20
-# ERC20 Lock/Unlock, Diamond Proxy, Token Swap, and Staking
 
-This repository contains smart contracts that enable various features, including ERC20 token locking and unlocking, a Diamond Proxy for managing ERC20 tokens, token swapping, and staking. Below, we provide an overview of each component and how to use them.
+# ERC-20 Token Management Suite
 
-## ERC20 Lock/Unlock
+This Ethereum smart contract suite provides a comprehensive set of functionalities for managing ERC-20 tokens. The suite includes contracts for Locking/Unlocking tokens, Diamond Proxy, Token Swapping, Staking, ICO (Initial Coin Offering), and Airdrop. Below is an overview of each component:
 
-### Overview
+## 1. Lock/Unlock
 
-The ERC20 Lock/Unlock smart contract allows users to lock ERC20 tokens. Locked tokens can only be unlocked by the user who locked them. This contract provides methods for locking and unlocking tokens and checking whether a token is currently locked.
+The Lock/Unlock contract allows token holders to lock a portion of their ERC-20 tokens for a specified period. After the lock period expires, they can unlock and access their tokens. This is useful for vesting schedules or governance token distribution.
 
-### Functions
+### Contract Functions
 
-- `locktoken`: Locks a specified amount of tokens.
-- `unlocktoken`: Unlocks previously locked tokens.
-- `istokenLocked`: Checks if tokens are currently locked.
+- `lockTokens(uint256 amount, uint256 lockDuration)`: Locks a specified amount of tokens for a given duration.
+- `unlockTokens()`: Unlocks previously locked tokens after the lock period expires.
 
-## Diamond Proxy for ERC20 Tokens
+## 2. Diamond Proxy
 
-### Overview
+The Diamond Proxy contract is an upgradeable contract pattern that enables flexible and efficient upgrades of smart contracts. It uses the Diamond Standard to manage multiple facets (functions) of a contract, making it easier to add new functionality without replacing the entire contract.
 
-The Diamond Proxy smart contract serves as a proxy for an ERC20 token. It is part of the Diamond Standard, enabling modular and efficient upgrades to the underlying ERC20 token. You can initialize the ERC20 token, transfer tokens, approve spending, mint new tokens, and more using this Diamond Proxy.
+### Contract Functions
 
-### Functions
+- Adding and managing facets (functions) for the contract.
 
-- `initializeERC20`: Initializes the ERC20 token.
-- `transfer`: Transfers tokens between addresses.
-- `approve`: Approves a spender to spend tokens on behalf of the owner.
-- `transferFrom`: Transfers tokens on behalf of the owner.
-- `mint`: Mints new tokens (owner only).
-- `burn`: Burns tokens (owner only).
-- `allowancefun`: Retrieves the allowance for a spender.
-- `gettotalSupply`: Retrieves the total supply of tokens.
-- `getbalanceOf`: Retrieves the balance of tokens for a specific owner.
+## 3. Token Swap
 
-## Token Swap
+The Token Swap contract facilitates the exchange of one ERC-20 token for another at a predefined rate. It can be used for migrations, token swaps, or converting tokens from one standard to another (e.g., from an old token standard to the latest version).
 
-### Overview
+### Contract Functions
 
-The token swap component allows users to exchange one ERC20 token for another. This contract provides a straightforward way to facilitate token swaps between different token types.
+- `swapTokens(uint256 amount)`: Swaps a specified amount of one token for another at the defined rate.
 
-### Functions
+## 4. Staking
 
-- `swapTokens`: Swaps one ERC20 token for another.
+The Staking contract allows users to stake ERC-20 tokens to earn rewards or participate in network governance. Users can stake tokens and receive rewards or voting power.
 
-## Staking
+### Contract Functions
 
-### Overview
+- `stakeTokens(uint256 amount)`: Allows users to stake tokens.
+- `unstakeTokens(uint256 amount)`: Allows users to unstake their tokens.
+- `getStakingInfo(address user)`: Retrieves staking information for a specific user.
 
-The staking contract allows users to lock and earn rewards for staking tokens. Users can deposit tokens into the staking contract and receive rewards in return. The longer the tokens are staked, the higher the rewards.
+## 5. ICO (Initial Coin Offering)
 
-### Functions
+The ICO contract enables the launch of a token sale event. Participants can send ETH and receive the project's ERC-20 tokens at the ICO rate. This is commonly used for fundraising during project launches.
 
-- `stakeTokens`: Locks tokens for staking.
-- `unstakeTokens`: Unlocks and withdraws staked tokens.
-- `claimRewards`: Claims rewards for staking.
+### Contract Functions
+
+- `participateInICO(uint256 amount)`: Allows participants to buy ICO tokens by sending ETH.
+- `finalizeICO()`: Finalizes the ICO, distributing tokens to participants.
+
+## 6. Airdrop
+
+The Airdrop contract simplifies the distribution of tokens to a large number of addresses. It allows the project team to distribute tokens for promotional or community-building purposes.
+
+### Contract Functions
+
+- `addAirdropRecipient(address recipient, uint256 amount)`: Adds an address to receive a specified amount of tokens.
+- `distributeAirdropTokens()`: Distributes tokens to the registered addresses.
 
 ## Usage
 
-1. Deploy the relevant smart contracts to the Ethereum blockchain.
+To deploy and use these contracts, follow the instructions for each contract individually. You can customize these contracts to fit the requirements of your project, such as specifying lock durations, token swap rates, staking rewards, ICO parameters, and airdrop distribution details.
 
-2. Interact with the ERC20 Lock/Unlock contract to lock and unlock tokens.
-
-3. Use the Diamond Proxy to manage ERC20 tokens, including initializing the token, transferring tokens, and more.
-
-4. Employ the token swap contract to exchange one ERC20 token for another.
-
-5. Participate in staking by staking tokens, unstaking, and claiming rewards.
-
-6. Follow the specific instructions for each contract for more details on usage and access control.
-
+Ensure that you thoroughly test and audit the contracts before deploying them to the Ethereum mainnet, especially when dealing with real assets or financial transactions.
 
